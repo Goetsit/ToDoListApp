@@ -10,7 +10,7 @@ function readyNow() {
   console.log('JQ');
   getTasks();
   getCount();
-  $('#addBtn').on('click', addTask);
+  $('#addBtn').on('click', addClicked);
 
 }
 
@@ -27,6 +27,36 @@ function getTasks() {
   })
 }
 
+
+
+
+function addClicked() {
+  var task = $('#taskIn').val();
+  var dueDate = $('#dueDateIn').val();
+  console.log('task', task);
+  console.log('dueDate', dueDate);
+  var task = {
+    task: task,
+    duedate: dueDate,
+  };
+addTask(task)
+}
+
+
+
+function addTask(taskToSend) {
+  $.ajax({
+    type: 'POST',
+    url: '/addtask',
+    data: taskToSend
+  }).done(function (response) {
+    console.log(response);
+    getTasks();
+    getCount();
+  }).fail(function(error){
+    alert('Something went wrong.');
+  });
+}
 
 
 
