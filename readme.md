@@ -1,78 +1,71 @@
+# ToDoList
 
-Table Setup
---------
-```SQL
-CREATE TABLE "koala"(
-	"id" serial PRIMARY KEY,
-	"name" VARCHAR(100),
-	"gender" VARCHAR (2),
-	"age" INTEGER,
-	"readyfortransfer" BOOLEAN,
-	"notes" VARCHAR(500)
-);
+```
+CREATE TABLE "task" (
+			"taskid" serial PRIMARY KEY
+			,"task" VARCHAR(500) NOT NULL
+			,"duedate" DATE NOT NULL
+			,"complete" BOOLEAN		
+			)
+
+INSERT INTO "task"(
+					"task"
+					,"duedate"
+					,"complete"
+				  )
+VALUES(
+	  	'make my bed'
+	  	,'2017-10-01'
+	  	,FALSE
+	  ),
+    (
+	  	'feed the dog'
+	  	,'2017-10-18'
+	  	,FALSE
+	  );
+
+
+CREATE TABLE "task_note"(
+						  "tasknoteid" SERIAL PRIMARY KEY		
+						  ,"taskid" INT REFERENCES task
+						  ,"recurring" BOOLEAN
+						  ,"note" VARCHAR(500)				
+						)
+
+
+INSERT INTO "task_note" ("taskid"
+                         ,"recurring"
+                         ,"note" ) 
+VALUES
+    ((SELECT "taskid" from "task" WHERE "taskid"=1)
+    ,TRUE
+    ,'I do not like making my bed'),
+    
+    ((SELECT "taskid" from "task" WHERE "taskid"=2)
+    ,TRUE
+    ,'I forgot to feed the dog, oops')
+    ((SELECT "taskid" from "task" WHERE "taskid"=2)
+    ,TRUE
+    ,'On October 14th, I did not forget to feed the dog');
+    
+
+
 ```
 
 
-Routers
-------
-Router:
-* '/koalas':
-    * GET - returns {id (int) ,name (str),gender (str), age(int),readyfortransfer (bool), notes (str)}
-    * GET - /:id, returns koala at row id
-    * DELETE - /:id, removes koala with row id
-    * POST - accepts {name (str),gender (str), age(int),readyForTransfer(bool), notes (str)}
-    * PUT - /:id, accepts {name (str),gender (str), age(int),readyForTransfer(bool), notes (str)}, updates koala with row id
-    * PUT - '/ready/:id', sets "readyfortransfer" of koala in row id to true 
+My initial plan for this is to have a To Do List
+
+have the task listed with the task_note data available as an accordian list or drop down type menu below it
 
 
+Instructions for the assignment:
 
+Here are the specific components for the challenge:
 
-
-
-This must stop:
----------------
-![Nevar again](https://i.makeagif.com/media/8-22-2014/GO_DT4.gif)
-
-
-Koala Holla
-===========
-
-Our client, Koala Holla (1976 Llama Comma Drive, Walla Walla WA) is a non-profit dedicated to the ethical transitioning of koalas from the outdoors (whereupon they may be rained) to urban areas where roofs exist. Your team has been hired build a web app to handle their terrarium residents.
-
-Technologies
-------------
-* JQuery
-* Node
-* Express
-* SQL
-
-Client needs
-------------
-Koala Holla has provided a TSV (tab separated values) spreadsheet of their current inventory. They want a database table that houses this information and can be viewed at any time. You should add this table to your existing **deneb** database. After importing the data, create a web app to display the Koalas. Users should be able to add new Koalas to the database through the provided HTML form.
-
-They have also provided their logo and the source code from when Lou (a KH employee) tried to spin up a JEN stack project to support this, but had to leave for foraging school in Finland before he could finally finish. (JEN is short for jQuery, Express & Node).
-
-Hard Mode
----
-1. Ability for mark Koala ready for transfer. Add a button to each row that reads 'Ready for Transfer'. When the user clicks on the button, it should update the database for the specific Koala. The 'Ready for Transfer' button should only appear for Koalas that haven't yet been marked ready for transfer.
-
-2. Ability to delete Koalas from the database.
-
-3. Add some styling with bootstrap.
-
-Pro Mode
----
-1. Ability to edit information for existing Koalas in the db.
-2. Ability to toggle the display of Koalas ready for transfer.
-3. Add form validation, additional styling and a README.md.
-
-Delivery
---------
-Upon completion of the project you'll need to provide not only the source (via GitHub url), but also instructions on how the database table should be set up. This can be in a simple databaseSetup.sql file in the repo.
-
-Sample Output
---------
-Your final product may look something like this:
-
-![sample](sample.png)
-
+Create a front end experience that allows a user to create a task.
+When the task is created, it should be stored inside of a database (SQL)
+Whenever a task is created the front end should refresh to show all tasks that need to be completed.
+Each task should have an option to 'Complete' or 'Delete'.
+When a task is complete, its visual representation should change on the front end (for example, the background of the task container could change from gray to green, as well as the complete option 'checked off'. Each of these are accomplished in CSS, but will need to hook into logic to know whether or not the task is complete)
+Whether or not a task is complete should also be stored in the database.
+Deleting a task should remove it both from the Front End as well as the Database.
