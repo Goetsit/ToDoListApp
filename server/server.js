@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 5000;
 var koalaRouter = require('./routes/koala_router.js');
-var poolModule = require('../modules/pool.js');
+var poolModule = require('./modules/pool.js');
 var pool = poolModule;
 
 app.use(bodyParser.urlencoded({extended: true}));
