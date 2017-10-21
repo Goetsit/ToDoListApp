@@ -1,7 +1,7 @@
 console.log('js');
 
 var editing = false;
-var editingId = 0;
+var taskId = 0;
 
 
 $(document).ready(readyNow);
@@ -11,6 +11,7 @@ function readyNow() {
   getTasks();
   getCount();
   $('#addBtn').on('click', addClicked);
+  $('#viewTask').on('click','.completeBtn', taskComplete);
 
 }
 
@@ -82,6 +83,27 @@ function appendCounter(count){
   }
 }
 
+
+
+function taskComplete() {
+
+  taskid = $(this).data('id');
+
+  console.log('console logging taskId',taskid);
+  console.log('button clicked');
+
+  $.ajax({
+    method: 'PUT',
+    url: '/tasklist/complete/' + taskid,
+  }).done(function(response){
+    getTasks();
+    getCount();
+  }).fail(function(error){
+    console.log('Error marking ready for transfer', error);
+  })
+
+}
+
 function appendToDom(tasks) {
 
   console.log(tasks);
@@ -95,6 +117,8 @@ function appendToDom(tasks) {
     $tr.append('<td>' + task.task + '</td>');
     $tr.append('<td>' + task.duedate + '</td>');
     $tr.append('<td>' + task.complete + '</td>');
+    $tr.append('<td><button class="completeBtn" data-id="' + task.taskid + '">Completed</button></td>');
+    $tr.data('task', task[i]);
     $('#viewTask').append($tr);
   }
 
