@@ -1,6 +1,6 @@
 # ToDoList
 
-### Table Creation
+## Table Creation
 Below is the table set up for task and task_note.
 I've included initial values for both tables
 There are two ALTER TABLE statements at the bottom that you will want to make sure are run as well. 
@@ -65,11 +65,24 @@ ALTER TABLE "public"."task_note"
 
 ```
 
+## Front-End To Do List Functionality
 
+The user has the ability to add a Task and a Due Date, this is added to the table using the Add Task button.
+Per my table creation, each task will be created with a FALSE default for the Completed column.
 
-My initial plan for this is to have a To Do List
+The user can change this column to True using the Completed button.
 
-have the task listed with the task_note data available as an accordian list or drop down type menu below it
+The Delete button deletes both from task and, if present, task_note.
+This button should be used with caution as these tables are not backed up - if the task is deleted, all data will be removed.
+
+The Add Note button inserts a note to the task_note table.
+Notes are inserted via a prompt().
+It inserts based on the taskid of the task it is associated to.
+The note can be accessed by selecting the Task on the table.
+Notes will appear as alerts and will cause an alert for each note on the task.
+
+The UNCOMPLETED TASK counter counts the rows on the table where the Completed values is FALSE.
+This is determined by using the aggergate function COUNT() within the task_counter.js router.
 
 
 Instructions for the assignment:
