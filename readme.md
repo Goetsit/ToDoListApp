@@ -15,28 +15,28 @@ CREATE TABLE "task" (
 			)
 
 INSERT INTO "task"(
-					"task"
-					,"duedate"
-					,"complete"
-				  )
+		   "task"
+		   ,"duedate"
+		   ,"complete"
+		   )
 VALUES(
-	  	'make my bed'
-	  	,'2017-10-01'
-	  	,FALSE
-	  ),
-    (
-	  	'feed the dog'
-	  	,'2017-10-18'
-	  	,FALSE
-	  );
+	'make my bed'
+	,'2017-10-01'
+	,FALSE
+	),
+      (
+	'feed the dog'
+	,'2017-10-18'
+	,FALSE
+	);
 
 
 CREATE TABLE "task_note"(
-						  "tasknoteid" SERIAL PRIMARY KEY		
-						  ,"taskid" INT REFERENCES task
-						  ,"recurring" BOOLEAN
-						  ,"note" VARCHAR(500)				
-						)
+			"tasknoteid" SERIAL PRIMARY KEY		
+			,"taskid" INT REFERENCES task
+			,"recurring" BOOLEAN
+			,"note" VARCHAR(500)				
+			)
 
 
 INSERT INTO "task_note" ("taskid"
