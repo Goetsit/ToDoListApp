@@ -49,8 +49,11 @@ VALUES
     ,'On October 14th, I did not forget to feed the dog');
     
 
+ALTER TABLE "public"."task" ALTER COLUMN "complete" SET DEFAULT false;
+
 
 ```
+
 
 
 My initial plan for this is to have a To Do List
