@@ -1,6 +1,10 @@
 # ToDoList
 
 ### Table Creation
+Below is the table set up for task and task_note.
+I've included initial values for both tables
+There are two ALTER TABLE statements at the bottom that you will want to make sure are run as well. 
+the necessity for these changes came after the application started to take form, these include setting the default values for Completed to false and altering a constraint on the task_notes table so taks can be deleted if from the application if they also include a note.
 
 ```
 CREATE TABLE "task" (
