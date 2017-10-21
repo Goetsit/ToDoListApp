@@ -1,6 +1,6 @@
 console.log('js');
 
-var editing = false;
+
 var taskId = 0;
 
 
@@ -154,7 +154,7 @@ console.log(taskid);
     console.log('getting task notes: ', response);
     console.log('note response',response);
 
-    alert(response);
+    noteAlert(response);
   }).fail(function (error) {
     console.log('GET failed:', error);
   });
@@ -186,4 +186,11 @@ console.log('tasting taskNote variable', taskNote);
   }).fail(function (error) {
     alert('Something went wrong.');
   });
+}
+
+function noteAlert(note){
+  for (var i = 0; i < note.length; i += 1) {
+    var taskNote = note[i];
+    alert(taskNote.note);
+  }
 }
