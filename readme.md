@@ -51,6 +51,11 @@ VALUES
 
 ALTER TABLE "public"."task" ALTER COLUMN "complete" SET DEFAULT false;
 
+ALTER TABLE "public"."task_note"
+  DROP CONSTRAINT "task_note_taskid_fkey",
+  ADD CONSTRAINT "task_note_taskid_fkey" FOREIGN KEY ("taskid") REFERENCES "public"."task"("taskid") ON DELETE CASCADE;
+
+
 
 ```
 
