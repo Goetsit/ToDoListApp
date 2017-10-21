@@ -13,7 +13,7 @@ var config = {
 var pool = new pg.Pool(config);
 
 router.get('/:taskid',function(req,res){
-    var taskid = req.params.task;
+    var taskid = req.params.taskid;
     console.log(taskid);
   pool.connect(function(errorConnectingToDB, db, done) {
     if(errorConnectingToDB){
@@ -27,8 +27,9 @@ router.get('/:taskid',function(req,res){
           console.log('Error making query', errorMakingQuery, result)
           res.sendStatus(500);
         } else {
-          console.log(result.rows);
+          console.log('CONSOLE LOG RESULT ROWS',result.rows);
           res.send(result.rows);
+          //res.send('testing test');
         }
       });
     }
