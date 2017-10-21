@@ -65,9 +65,9 @@ ALTER TABLE "public"."task_note"
 
 ```
 
-## Front-End To Do List Functionality
+# Front-End To Do List Functionality
 
-# Add Task Functionality and Complete Task Functionality
+## Add Task Functionality and Complete Task Functionality
 
 The user has the ability to add a Task and a Due Date, this is added to the table using the Add Task button.
 Per my table creation, each task will be created with a FALSE default for the Completed column.
@@ -75,12 +75,12 @@ Tasks are ordered first by whether or not they are completed, then by their due 
 
 The user can change this column to True using the Completed button.
 
-# Delete Button Functionality
+## Delete Button Functionality
 
 The Delete button deletes both from task and, if present, task_note.
 This button should be used with caution as these tables are not backed up - if the task is deleted, all data will be removed.
 
-# Add Note Functionality
+## Add Note Functionality
 
 The Add Note button inserts a note to the task_note table.
 Notes are inserted via a prompt().
@@ -88,7 +88,7 @@ It inserts based on the taskid of the task it is associated to.
 The note can be accessed by selecting the Task on the table of the To Do List; for example, if you use the dummy data provided, click the text that says "make my bed" - this should alert the user with the notes.
 Notes will appear as alerts and will cause an alert for each note on the task.
 
-# Uncompleted Task Counter Functionality
+## Uncompleted Task Counter Functionality
 
 The UNCOMPLETED TASK counter counts the rows on the table where the Completed values is FALSE.
 This is determined by using the aggergate function COUNT() within the task_counter.js router.
