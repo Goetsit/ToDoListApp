@@ -12,6 +12,8 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+//POST request, inserts a note with the corresponding taskid into "task_note"
+
 router.post('/', function (req, res) {
     var task = req.body
 
