@@ -12,6 +12,7 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+//DELETE request, uses the delete button to initilize request, deletes subsequent task and task_note(s)
 
 router.delete('/:taskid',function(req,res){   //mark ready for transfer PUT
     var taskid = req.params.taskid;
