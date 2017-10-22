@@ -88,7 +88,7 @@ It inserts based on the taskid of the task it is associated to.
 The note can be accessed by selecting the Task on the table of the To Do List; for example, if you use the dummy data provided, click the text that says "make my bed" - this should alert the user with the notes.
 Notes will appear as alerts and will cause an alert for each note on the task.
 
-## Uncompleted Task Counter Functionality
+## "Uncompleted Task Counter" Functionality
 
 The UNCOMPLETED TASK counter counts the rows on the table where the Completed values is FALSE.
 This is determined by using the aggergate function COUNT() within the task_counter.js router.
