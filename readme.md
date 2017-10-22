@@ -95,3 +95,37 @@ This is determined by using the aggergate function COUNT() within the task_count
 
 # Back-End To Do List Functionality
 
+See code comments in client.js for brief description of client side code and the respective routes
+
+## server.js
+
+Each route is required as a variable and then included with app.use
+
+## task_route.js
+
+Initial GET request, selects from the "task" table
+
+## task_counter.js
+
+GET request, counts from "task" where completed is false, appends this to the DOM in client.js
+
+## task_add.js
+
+POST request, inserts new task with default of False for complete and appends the new task to the DOM. This uses the Add Task button to star the request
+
+## task_complete.js
+
+PUT request, updates the completed column to reflect true
+
+## task_delete.js
+
+DELETE request, uses the delete button to initilize request, deletes subsequent task and task_note(s)
+
+## task_note.js
+
+POST request, inserts a note with the corresponding taskid into "task_note"
+
+## task_note_alert.js
+
+GET request, when selecting on the task in the table, requests the note(s) from the "task_note" table and alerts the users with those notes
+
