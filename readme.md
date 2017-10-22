@@ -65,7 +65,7 @@ ALTER TABLE "public"."task_note"
 
 ```
 
-# Front-End To Do List Functionality
+# Client-Facing To Do List Functionality
 
 ## Add Task Functionality and Complete Task Functionality
 
@@ -93,7 +93,7 @@ Notes will appear as alerts and will cause an alert for each note on the task.
 The UNCOMPLETED TASK counter counts the rows on the table where the Completed values is FALSE.
 This is determined by using the aggergate function COUNT() within the task_counter.js router.
 
-# Back-End To Do List Functionality
+# Server-Side To Do List Functionality
 
 See code comments in client.js for brief description of client side code and the respective routes
 
