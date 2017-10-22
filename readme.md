@@ -80,7 +80,7 @@ The user can change this column to True using the Completed button.
 The Delete button deletes both from task and, if present, task_note.
 This button should be used with caution as these tables are not backed up - if the task is deleted, all data will be removed.
 
-## Add Note Functionality
+## Add/View Note Functionality
 
 The Add Note button inserts a note to the task_note table.
 Notes are inserted via a prompt().
