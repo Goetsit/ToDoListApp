@@ -40,18 +40,14 @@ CREATE TABLE "task_note"(
 
 
 INSERT INTO "task_note" ("taskid"
-                         ,"recurring"
                          ,"note" ) 
 VALUES
     ((SELECT "taskid" from "task" WHERE "taskid"=1)
-    ,TRUE
     ,'I do not like making my bed'),
     
     ((SELECT "taskid" from "task" WHERE "taskid"=2)
-    ,TRUE
     ,'I forgot to feed the dog, oops')
     ((SELECT "taskid" from "task" WHERE "taskid"=2)
-    ,TRUE
     ,'On October 14th, I did not forget to feed the dog');
     
 
