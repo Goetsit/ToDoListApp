@@ -1,1 +1,56 @@
+.container{
+
+        background-color: #9AE3E8;
+
+}
+
+.jumbotron{
+    background-color: #AAFFBC;
+    color: white;
+    font-family: 'Special Elite', cursive;
+    display: inline-block;
+}
+
+h2 {
+    color: white;
+    font-family: 'Special Elite', cursive;
+}
+th {
+    font-family: 'Special Elite', cursive;
+}
+
+.btn {
+    border-color: black;
+    font-family: 'Special Elite', cursive;
+}
+
+#addBtn{
+    color: black;
+    background-color: #AAE3FF;
+}
+
+.noteBtn{
+    background-color: #B6FFEF;
+
+}
+
+.completeBtn {
+    background-color: #AAE3FF;
+}
+
+table{
+    margin-top: 10px;
+    background-color: #AAFFBC;
+}
+
+
+span{
+    margin: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 5px;
+}
 
