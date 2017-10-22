@@ -12,9 +12,11 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+//POST request, inserts new task with default of False for complete and appends the new task to the DOM. This uses the Add Task button to star the request
+
 router.post('/',function(req,res){
     var task = req.body;
-    console.log('TASK ON POST', task);
+    console.log('TASK ON POST', task)
   pool.connect(function(errorConnectingToDB, db, done) {
     if(errorConnectingToDB){
         console.log('Error connecting to db', errorConnectingToDB);
@@ -27,7 +29,7 @@ router.post('/',function(req,res){
           console.log('Error making query', errorMakingQuery, result)
           res.sendStatus(500);
         } else {
-          console.log(result.rows);
+    
           res.send(result.rows);
         }
       });
