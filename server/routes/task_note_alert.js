@@ -12,6 +12,8 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+//GET request, when selecting on the task in the table, requests the note(s) from the "task_note" table and alerts the users with those notes
+
 router.get('/:taskid',function(req,res){
     var taskid = req.params.taskid;
     console.log(taskid);
