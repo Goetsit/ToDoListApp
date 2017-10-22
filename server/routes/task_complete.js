@@ -12,7 +12,7 @@ var config = {
 
 var pool = new pg.Pool(config);
 
-
+//PUT request, updates the completed column to reflect true
 router.put('/:taskid',function(req,res){   //mark ready for transfer PUT
     var taskid = req.params.taskid;
     var task = req.body;
