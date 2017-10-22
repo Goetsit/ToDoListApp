@@ -12,6 +12,8 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+//GET request, counts from "task" where completed is false, appends this to the DOM in client.js
+
 router.get('/',function(req,res){
   pool.connect(function(errorConnectingToDB, db, done) {
     if(errorConnectingToDB){
