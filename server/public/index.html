@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>To Do List</title>
+  <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <script src="vendors/jquery-3.0.0.min.js" charset="utf-8"></script>
   <script src="scripts/client.js" charset="utf-8"></script>
@@ -15,48 +16,51 @@
     <div class="jumbotron">
       <div class="row">
         <div class="col-xs-6">
-          <h1>To Do List</h1>         
+          <h1>To Do List</h1>
+
+          
         </div>
       </div>
+
     </div>
     <div id="addTask">
       <h2 id="status">Add Task</h2>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="taskIn">Task</label>
-          <input class="form-control" type="text" id="taskIn" value="" placeholder="Task">
+          <input class="form-control" type="text" id="taskIn" value="" placeholder="Task (Example: Clean My Room)">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="dueDateIn">Due Date</label>
-          <input class="form-control" type="text" id="dueDateIn" value="" placeholder="Due Date YYYY-MM-DD">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="notesIn">Notes</label>
-          <input class="form-control" type="text" id="notesIn" value="" placeholder="Completed True/False">
+          <input class="form-control" type="text" id="dueDateIn" value="" placeholder="Due Date (YYYY-MM-DD or MM-DD-YYYY)">
         </div>
       </div>
       <button type="button" class="btn btn-primary submit pull-right" id="addBtn">Add Task</button>
     </div>
     <div>
       <h2>Task List</h2>
-      UNCOMPLETED TASKS: <span id="count">0</span>
-      <table class="table table-hover table-bordered">
+      <b>UNCOMPLETED TASKS: <span id="count">0</span></b>
+
+      <table class="table table-hover table-bordered table-striped">
         <thead>
           <tr>
             <th>Task</th>
             <th>Due Date</th>
             <th>Completed?</th>
+            <th>Mark As Completed</th>
+            <th>Add Notes</th>
+            <th>Delete?</th>
           </tr>
         </thead>
         <tbody id="viewTask">
         </tbody>
       </table>
-    </div>
   </div>
+
+  
+  </div> 
 </body>
 
 </html>
