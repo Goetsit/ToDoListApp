@@ -12,6 +12,7 @@ var taskNoteAlert= require('./routes/task_note_alert.js');
 var poolModule = require('./modules/pool.js');
 var pool = poolModule;
 
+//routes
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 app.use('/tasklist', taskRouter);
