@@ -1,6 +1,5 @@
 console.log('js');
 
-var editing = false;
 var taskId = 0;
 
 
@@ -175,7 +174,7 @@ function addNote() { //ADD NOTE BUTTON, INSERTS INTO TASK_NOTE, VIEWABLE WHEN CL
   });
 }
 
-function noteAlert(note) { //ALERTS USER WITH NOTE ON TASK
+function noteAlert(note) { //ALERTS USER WITH NOTE ON TASK >> *****TASKS ARE VIEWED WHEN CLICKING ON THE TASK IN THE TABLE
   for (var i = 0; i < note.length; i += 1) {
     var taskNote = note[i];
     alert(taskNote.note);
