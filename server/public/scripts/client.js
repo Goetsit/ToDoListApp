@@ -1,6 +1,6 @@
 console.log('js');
 
-
+var editing = false;
 var taskId = 0;
 
 
@@ -15,11 +15,11 @@ function readyNow() {
   $('#viewTask').on('click', '.deleteBtn', deleteTask);
   $('#viewTask').on('click', '.task', taskNote);
   $('#viewTask').on('click', '.noteBtn', addNote);
-}
+} //CLICK HANDLERS
 
 
 
-function getTasks() {
+function getTasks() { //BEGIN INITIAL GET REQUEST TO POPULATE TASKS FROM DB TASK_ROUTE.JS
   $.ajax({
     type: 'GET',
     url: '/tasklist'
@@ -27,16 +27,16 @@ function getTasks() {
     console.log('getting tasks: ', response);
     //Append to dom function
     console.log('looking for id', response);
-    appendToDom(response);
+    appendToDom(response); //CALL APPENDTODOM TO APPEND THE RESPONSE
   }).fail(function (error) {
     console.log('GET failed:', error);
   })
-}
+} //END GET TASKS
 
 
 
 
-function addClicked() {
+function addClicked() { //FUNCTION FOR ADD TASK BUTTON 
   var task = $('#taskIn').val();
   var dueDate = $('#dueDateIn').val();
   console.log('task', task);
@@ -45,52 +45,52 @@ function addClicked() {
     task: task,
     duedate: dueDate,
   };
-  addTask(task);
+  addTask(task); //BEING AJAX POST REQUEST
 
-  $('input').val('');
-}
+  $('input').val(''); //CLEAR INPUT VALUES
+} //END ADDCLICKED
 
 
 
-function addTask(taskToSend) {
+function addTask(taskToSend) { //TASK_ADD.JS
   $.ajax({
     type: 'POST',
     url: '/addtask',
     data: taskToSend
   }).done(function (response) {
     console.log(response);
-    getTasks();
-    getCount();
+    getTasks(); //RUN GET TASKS AGAIN TO REFRESH TABLE
+    getCount(); //UPDATE COUNT OF UNCOMPLETE TASKS
   }).fail(function (error) {
     alert('Something went wrong.');
   });
-}
+} //END ADDTASK
 
 
 
-function getCount() {
+function getCount() { //GET CURRENT COUNT OF UNCOMPLETE TASKS >>> TASK_COUNTER.JS
   $.ajax({
     type: 'GET',
     url: '/taskcounter'
   }).done(function (response) {
     console.log('getting task count: ', response);
-    appendCounter(response);
+    appendCounter(response); //APPEND THE COUNT FROM THE SELECT IN THE ROUTE
   }).fail(function (error) {
     console.log('GET failed:', error);
   })
 
-}
+} //END GETCOUNT
 
-function appendCounter(count) {
+function appendCounter(count) { // APPEND COUNT TO SPAN
   for (var ii = 0; ii < count.length; ii += 1) {
     var counter = count[ii]
     $('#count').html(counter.count);
   }
-}
+} //END APPEND COUNTER
 
 
 
-function taskComplete() {
+function taskComplete() { //UPDATE TASKS AS COMPLETE WITH COMPLETE BUTTON  TASK_COMPLETE.JS
 
   taskid = $(this).data('id');
 
@@ -98,16 +98,14 @@ function taskComplete() {
     method: 'PUT',
     url: '/tasklist/complete/' + taskid,
   }).done(function (response) {
-    getTasks();
-    getCount();
+    getTasks(); //REFRESH TASKS
+    getCount(); //REFRESH COUNT
   }).fail(function (error) {
     console.log('Error marking ready for transfer', error);
   })
+}// END TASK COMPLETE
 
-
-}
-
-function deleteTask() {
+function deleteTask() { //DELETE A TASK AND ANY ASSOCIATED NOTES TASK_DELETE.JS
   taskid = $(this).data('id');
   $.ajax({
     method: 'DELETE',
@@ -121,13 +119,12 @@ function deleteTask() {
 }
 
 
-function appendToDom(tasks) {
+function appendToDom(tasks) { //APPEND TASKS TO TABLE
 
-  $('#viewTask').empty();
-  // Loop through products and append to dom
+  $('#viewTask').empty(); //PREVENTS DUPLICATION
+  // Loop through tasks and append to dom
   for (var i = 0; i < tasks.length; i += 1) {
     var task = tasks[i];
-    //console.log('looking for ID in appendDOM',task.taskid);
     var $tr = $('<tr></tr>');
     $tr.append('<td class = "task">' + task.task + '</td>');
     $tr.append('<td>' + task.duedate + '</td>');
@@ -137,24 +134,19 @@ function appendToDom(tasks) {
     $tr.append('<td><button class="deleteBtn btn btn-danger" data-id="' + task.taskid + '">Delete</button></td>');
     $tr.data('task', task[i]);
     $tr.data('taskid', task.taskid);
-    console.log('console logging at end of append',$tr.data('taskid'));
+    console.log('console logging at end of append', $tr.data('taskid'));
     $('#viewTask').append($tr);
   }
 
 }
 
-function taskNote(taskid) {
+function taskNote(taskid) { //GET REQUEST FOR TASKS WITH NOTES TASK_NOTE_ALERT.JS
   var taskid = $(this).closest('tr').data('taskid');
-console.log(taskid);
-  
- $.ajax({
+  $.ajax({
     type: 'GET',
     url: '/tasklist/note/alert/' + taskid
   }).done(function (response) {
-    console.log('getting task notes: ', response);
-    console.log('note response',response);
-
-    noteAlert(response);
+    noteAlert(response); //RUN ALERT
   }).fail(function (error) {
     console.log('GET failed:', error);
   });
@@ -162,25 +154,20 @@ console.log(taskid);
 
 }
 
-function addNote() {
+function addNote() { //ADD NOTE BUTTON, INSERTS INTO TASK_NOTE, VIEWABLE WHEN CLICKING ON TASK ON DOM  TASK_NOTE.JS
   taskid = $(this).data('id');
   note = prompt('enter note:'); //prompt text will be entered as note
-  console.log(note);
 
   var taskNote = {
     taskid: taskid,
-    note:note
+    note: note
   }
-
-console.log('tasting taskNote variable', taskNote);
 
   $.ajax({
     type: 'POST',
     url: '/tasklist/note',
     data: taskNote
   }).done(function (response) {
-    console.log(note, 'IS THERE AN ID?')
-    console.log(response);
     getTasks();
     getCount();
   }).fail(function (error) {
@@ -188,7 +175,7 @@ console.log('tasting taskNote variable', taskNote);
   });
 }
 
-function noteAlert(note){
+function noteAlert(note) { //ALERTS USER WITH NOTE ON TASK
   for (var i = 0; i < note.length; i += 1) {
     var taskNote = note[i];
     alert(taskNote.note);
