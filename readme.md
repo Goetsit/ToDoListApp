@@ -46,7 +46,8 @@ VALUES
     ,'I do not like making my bed'),
     
     ((SELECT "taskid" from "task" WHERE "taskid"=2)
-    ,'I forgot to feed the dog, oops')
+    ,'I forgot to feed the dog, oops'),
+    
     ((SELECT "taskid" from "task" WHERE "taskid"=2)
     ,'On October 14th, I did not forget to feed the dog');
     
